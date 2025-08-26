@@ -1,3 +1,13 @@
+## 0.1.2 (2025-08-26)
+
+### 🩹 Fixes
+
+- **ng-automocks-jest:** fix repository urls ([fc1f1a6](https://github.com/MillerSvt/ng-automocks/commit/fc1f1a6))
+
+### ❤️ Thank You
+
+- Svyatoslav Zaytsev
+
 ## 0.1.1 (2025-08-26)
 
 ### 🩹 Fixes
