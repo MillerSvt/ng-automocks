@@ -7,5 +7,20 @@
   "dependencies": {
     "@angular/core": "^20.0.0",
     "jest": "^30"
-  }
+  },
+  "contributors": [
+    {
+      "name": "Svyatoslav Zaytsev",
+      "email": "sviatsv@yandex.ru",
+      "url": "https://github.com/MillerSvt"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MillerSvt/ng-automocks.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MillerSvt/ng-automocks/issues"
+  },
+  "homepage": "https://github.com/MillerSvt/ng-automocks/tree/master/libs/ng-automocks#readme"
 }

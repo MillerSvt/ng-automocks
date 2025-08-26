@@ -1,6 +1,6 @@
 # ng-automocks-jest
 
-<img src="images/logo.svg" width="40%" alt="logo">
+<img src="./images/logo.svg" width="40%" alt="logo">
 
 When testing Angular applications, you often need to isolate a component or service under test from its Angular dependencies. In the past, this meant manually creating stub components, using `NO_ERRORS_SCHEMA`, `TestBed.override...` functions, third party libraries, or creating mock entities manually. With `ng-automocks-jest`, you can generate **stubbed Angular components, directives, pipes, modules, and services** on the fly whenever you use Jest’s module mocking. This helps to:
 
