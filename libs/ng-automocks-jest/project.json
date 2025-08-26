@@ -19,7 +19,7 @@
         "outputPath": "dist/libs/ng-automocks-jest",
         "main": "libs/ng-automocks-jest/src/index.ts",
         "tsConfig": "libs/ng-automocks-jest/tsconfig.lib.json",
-        "assets": ["libs/ng-automocks-jest/*.md"],
+        "assets": ["README.md", "LICENSE", "images/logo.svg"],
         "format": ["cjs", "esm"]
       }
     },
