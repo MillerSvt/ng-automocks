@@ -5,10 +5,44 @@ import { stubHostDirectives } from './stub-host-directives';
 import { stubInputsFactory } from './stub-inputs-factory';
 import { ComponentType } from './types';
 
-export function stubComponent<T>(cache: StubCache, actual: Type<T>, mock: Type<T>): asserts mock is ComponentType<T> {
-    const { selectors, exportAs, standalone, signals, ngContentSelectors, hostDirectives, inputs, inputConfig } = (
-        actual as ComponentType<T>
-    ).ɵcmp;
+type DirectiveInputs<T> = {
+    [P in keyof T]?:
+        | string
+        | [
+              flags: any,
+              publicName: string,
+              declaredName?: string,
+              transform?: (value: any) => any
+          ];
+};
+
+export function stubComponent<T>(
+    cache: StubCache,
+    actual: Type<T>,
+    mock: Type<T>
+): asserts mock is ComponentType<T> {
+    const {
+        selectors,
+        exportAs,
+        standalone,
+        signals,
+        ngContentSelectors,
+        hostDirectives,
+        inputs,
+    } = (actual as ComponentType<T>).ɵcmp;
+
+    const inputConfig: DirectiveInputs<T> = {};
+
+    for (const publicName in inputs) {
+        const [minifiedName, flags, transform] = inputs[publicName];
+
+        inputConfig[minifiedName as keyof T] = [
+            flags,
+            publicName,
+            minifiedName,
+            ...(transform ? ([transform] as const) : ([] as const)),
+        ];
+    }
 
     cache.setMock(actual, mock);
 

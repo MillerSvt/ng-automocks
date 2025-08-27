@@ -111,4 +111,32 @@ describe('stubAnything', () => {
 
         expect(console.error).not.toHaveBeenCalled();
     });
+
+    it.each(wrappers)('stub extended component', (wrap) => {
+        const actual = jest.requireActual<typeof import('./__fixtures__/test-extended.component')>(
+            './__fixtures__/test-extended.component',
+        );
+        const mock = jest.createMockFromModule<typeof import('./__fixtures__/test-extended.component')>(
+            './__fixtures__/test-extended.component',
+        );
+
+        const cache = new StubCache();
+
+        stubAnything(cache, wrap(actual.TestComponent), wrap(mock.TestComponent));
+
+        @Component({
+            template: '<test [value1]="`test`" [value2]="`test`" [aValue3]="`test`" [aValue4]="`test`"></test>',
+            imports: [mock.TestComponent],
+            standalone: true,
+        })
+        class RootComponent {}
+
+        jest.spyOn(console, 'error');
+
+        expect(() => {
+            TestBed.createComponent(RootComponent).detectChanges();
+        }).not.toThrow();
+
+        expect(console.error).not.toHaveBeenCalled();
+    });
 });
