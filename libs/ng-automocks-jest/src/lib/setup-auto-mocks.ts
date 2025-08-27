@@ -7,7 +7,14 @@ export function setupAutoMocks(): void {
     jest.onGenerateMock((modulePath: string, moduleMock: unknown) => {
         const moduleActual = jest.requireActual(modulePath);
 
-        stubAnything(cache, moduleActual, moduleMock);
+        try {
+            stubAnything(cache, moduleActual, moduleMock);
+        } catch (e) {
+            throw new Error(
+                `[ng-automocks-jest] Failed to stub module ${modulePath}`,
+                { cause: e }
+            );
+        }
 
         return moduleMock;
     });
