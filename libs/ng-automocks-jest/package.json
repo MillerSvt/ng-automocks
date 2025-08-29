@@ -22,6 +22,6 @@
   "bugs": {
     "url": "https://github.com/MillerSvt/ng-automocks/issues"
   },
-  "homepage": "https://github.com/MillerSvt/ng-automocks/tree/master/libs/ng-automocks#readme",
+  "homepage": "https://github.com/MillerSvt/ng-automocks/blob/master/libs/ng-automocks-jest/README.md",
   "license": "MIT"
 }
