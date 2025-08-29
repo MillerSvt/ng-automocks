@@ -13,7 +13,7 @@ When testing Angular applications, you often need to isolate a component or serv
 ## Installation
 
 ```bash
-npm install ng-automocks-jest --save
+npm i -D ng-automocks-jest
 ```
 
 To activate this feature, you need to register it in your `jest-setup.ts`. The package provides a function `setupAutoMocks()` which uses Jest’s `jest.onGenerateMock()` hook internally. Here’s how to configure it:
