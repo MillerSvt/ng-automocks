@@ -1,3 +1,18 @@
+## 0.2.0 (2025-09-02)
+
+### 🚀 Features
+
+- **ng-automocks-jest:** add error wrapper ([d7cab7e](https://github.com/MillerSvt/ng-automocks/commit/d7cab7e))
+
+### 🩹 Fixes
+
+- **ng-automocks-jest:** fix homepage field ([19cb85a](https://github.com/MillerSvt/ng-automocks/commit/19cb85a))
+- **ng-automocks-jest:** fix license field ([70a57b9](https://github.com/MillerSvt/ng-automocks/commit/70a57b9))
+
+### ❤️ Thank You
+
+- Svyatoslav Zaytsev
+
 ## 0.1.3 (2025-08-27)
 
 ### 🩹 Fixes
