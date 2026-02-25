@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, viewChild } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
@@ -8,12 +8,12 @@ import { stubDirective } from './stub-directive';
 
 describe('stubComponent', () => {
     it('stub simple component', () => {
-        const actual = jest.requireActual<typeof import('./__fixtures__/test.component')>(
-            './__fixtures__/test.component',
-        );
-        const mock = jest.createMockFromModule<typeof import('./__fixtures__/test.component')>(
-            './__fixtures__/test.component',
-        );
+        const actual = jest.requireActual<
+            typeof import('./__fixtures__/test.component')
+        >('./__fixtures__/test.component');
+        const mock = jest.createMockFromModule<
+            typeof import('./__fixtures__/test.component')
+        >('./__fixtures__/test.component');
 
         const cache = new StubCache();
 
@@ -30,22 +30,26 @@ describe('stubComponent', () => {
 
         root.detectChanges();
 
-        const testComponent = root.debugElement.query(By.directive(mock.TestComponent));
+        const testComponent = root.debugElement.query(
+            By.directive(mock.TestComponent)
+        );
 
-        expect(testComponent.componentInstance).toBeInstanceOf(mock.TestComponent);
+        expect(testComponent.componentInstance).toBeInstanceOf(
+            mock.TestComponent
+        );
         expect(testComponent.nativeElement.innerHTML).toBe('');
     });
 
     it('reuse stubbed component', () => {
-        const actual = jest.requireActual<typeof import('./__fixtures__/test.component')>(
-            './__fixtures__/test.component',
-        );
-        const mock1 = jest.createMockFromModule<Readonly<typeof import('./__fixtures__/test.component')>>(
-            './__fixtures__/test.component',
-        );
-        const mock2 = jest.createMockFromModule<Readonly<typeof import('./__fixtures__/test.component')>>(
-            './__fixtures__/test.component',
-        );
+        const actual = jest.requireActual<
+            typeof import('./__fixtures__/test.component')
+        >('./__fixtures__/test.component');
+        const mock1 = jest.createMockFromModule<
+            Readonly<typeof import('./__fixtures__/test.component')>
+        >('./__fixtures__/test.component');
+        const mock2 = jest.createMockFromModule<
+            Readonly<typeof import('./__fixtures__/test.component')>
+        >('./__fixtures__/test.component');
 
         expect(mock1).not.toBe(mock2);
 
@@ -58,23 +62,27 @@ describe('stubComponent', () => {
     });
 
     it('stub component with host directives', () => {
-        const actual = jest.requireActual<typeof import('./__fixtures__/test-with-host-directives.component')>(
-            './__fixtures__/test-with-host-directives.component',
-        );
-        const mock = jest.createMockFromModule<typeof import('./__fixtures__/test-with-host-directives.component')>(
-            './__fixtures__/test-with-host-directives.component',
-        );
-        const actualDirective = jest.requireActual<typeof import('./__fixtures__/test.directive')>(
-            './__fixtures__/test.directive',
-        );
-        const mockDirective = jest.createMockFromModule<typeof import('./__fixtures__/test.directive')>(
-            './__fixtures__/test.directive',
-        );
+        const actual = jest.requireActual<
+            typeof import('./__fixtures__/test-with-host-directives.component')
+        >('./__fixtures__/test-with-host-directives.component');
+        const mock = jest.createMockFromModule<
+            typeof import('./__fixtures__/test-with-host-directives.component')
+        >('./__fixtures__/test-with-host-directives.component');
+        const actualDirective = jest.requireActual<
+            typeof import('./__fixtures__/test.directive')
+        >('./__fixtures__/test.directive');
+        const mockDirective = jest.createMockFromModule<
+            typeof import('./__fixtures__/test.directive')
+        >('./__fixtures__/test.directive');
 
         const cache = new StubCache();
 
         stubComponent(cache, actual.TestComponent, mock.TestComponent);
-        stubDirective(cache, actualDirective.TestDirective, mockDirective.TestDirective);
+        stubDirective(
+            cache,
+            actualDirective.TestDirective,
+            mockDirective.TestDirective
+        );
 
         @Component({
             template: '<test></test>',
@@ -87,19 +95,25 @@ describe('stubComponent', () => {
 
         root.detectChanges();
 
-        const testComponent = root.debugElement.query(By.directive(mockDirective.TestDirective));
+        const testComponent = root.debugElement.query(
+            By.directive(mockDirective.TestDirective)
+        );
 
-        expect(testComponent.componentInstance).toBeInstanceOf(mock.TestComponent);
-        expect(testComponent.injector.get(mockDirective.TestDirective)).toBeTruthy();
+        expect(testComponent.componentInstance).toBeInstanceOf(
+            mock.TestComponent
+        );
+        expect(
+            testComponent.injector.get(mockDirective.TestDirective)
+        ).toBeTruthy();
     });
 
     it('stub component with host directives that not imported', () => {
-        const actual = jest.requireActual<typeof import('./__fixtures__/test-with-host-directives.component')>(
-            './__fixtures__/test-with-host-directives.component',
-        );
-        const mock = jest.createMockFromModule<typeof import('./__fixtures__/test-with-host-directives.component')>(
-            './__fixtures__/test-with-host-directives.component',
-        );
+        const actual = jest.requireActual<
+            typeof import('./__fixtures__/test-with-host-directives.component')
+        >('./__fixtures__/test-with-host-directives.component');
+        const mock = jest.createMockFromModule<
+            typeof import('./__fixtures__/test-with-host-directives.component')
+        >('./__fixtures__/test-with-host-directives.component');
 
         const cache = new StubCache();
 
@@ -116,25 +130,30 @@ describe('stubComponent', () => {
 
         root.detectChanges();
 
-        const testComponent = root.debugElement.query(By.directive(mock.TestComponent));
+        const testComponent = root.debugElement.query(
+            By.directive(mock.TestComponent)
+        );
 
-        expect(testComponent.componentInstance).toBeInstanceOf(mock.TestComponent);
+        expect(testComponent.componentInstance).toBeInstanceOf(
+            mock.TestComponent
+        );
     });
 
     it('stub component with signal inputs', () => {
-        const actual = jest.requireActual<typeof import('./__fixtures__/test-with-signal-inputs.component')>(
-            './__fixtures__/test-with-signal-inputs.component',
-        );
-        const mock = jest.createMockFromModule<typeof import('./__fixtures__/test-with-signal-inputs.component')>(
-            './__fixtures__/test-with-signal-inputs.component',
-        );
+        const actual = jest.requireActual<
+            typeof import('./__fixtures__/test-with-signal-inputs.component')
+        >('./__fixtures__/test-with-signal-inputs.component');
+        const mock = jest.createMockFromModule<
+            typeof import('./__fixtures__/test-with-signal-inputs.component')
+        >('./__fixtures__/test-with-signal-inputs.component');
 
         const cache = new StubCache();
 
         stubComponent(cache, actual.TestComponent, mock.TestComponent);
 
         @Component({
-            template: '<test [value1]="`test`" [value2]="`test`" [aValue3]="`test`" [aValue4]="`test`"></test>',
+            template:
+                '<test [value1]="`test`" [value2]="`test`" [aValue3]="`test`" [aValue4]="`test`"></test>',
             imports: [mock.TestComponent],
             standalone: true,
         })
@@ -152,10 +171,14 @@ describe('stubComponent', () => {
     it('stub component with host directives that have inputs', () => {
         const actual = jest.requireActual<
             typeof import('./__fixtures__/test-with-host-directives-with-signal-inputs.component')
-        >('./__fixtures__/test-with-host-directives-with-signal-inputs.component');
+        >(
+            './__fixtures__/test-with-host-directives-with-signal-inputs.component'
+        );
         const mock = jest.createMockFromModule<
             typeof import('./__fixtures__/test-with-host-directives-with-signal-inputs.component')
-        >('./__fixtures__/test-with-host-directives-with-signal-inputs.component');
+        >(
+            './__fixtures__/test-with-host-directives-with-signal-inputs.component'
+        );
         const actualHostDirective = jest.requireActual<
             typeof import('./__fixtures__/test-with-signal-inputs.directive')
         >('./__fixtures__/test-with-signal-inputs.directive');
@@ -166,10 +189,15 @@ describe('stubComponent', () => {
         const cache = new StubCache();
 
         stubComponent(cache, actual.TestComponent, mock.TestComponent);
-        stubDirective(cache, actualHostDirective.TestDirective, mockHostDirective.TestDirective);
+        stubDirective(
+            cache,
+            actualHostDirective.TestDirective,
+            mockHostDirective.TestDirective
+        );
 
         @Component({
-            template: '<test [value1]="`test`" [value2]="`test`" [aValue3]="`test`" [aValue4]="`test`"></test>',
+            template:
+                '<test [value1]="`test`" [value2]="`test`" [aValue3]="`test`" [aValue4]="`test`"></test>',
             imports: [mock.TestComponent],
             standalone: true,
         })
@@ -187,17 +215,22 @@ describe('stubComponent', () => {
     it('stub component with host directives that have inputs and not imported', () => {
         const actual = jest.requireActual<
             typeof import('./__fixtures__/test-with-host-directives-with-signal-inputs.component')
-        >('./__fixtures__/test-with-host-directives-with-signal-inputs.component');
+        >(
+            './__fixtures__/test-with-host-directives-with-signal-inputs.component'
+        );
         const mock = jest.createMockFromModule<
             typeof import('./__fixtures__/test-with-host-directives-with-signal-inputs.component')
-        >('./__fixtures__/test-with-host-directives-with-signal-inputs.component');
+        >(
+            './__fixtures__/test-with-host-directives-with-signal-inputs.component'
+        );
 
         const cache = new StubCache();
 
         stubComponent(cache, actual.TestComponent, mock.TestComponent);
 
         @Component({
-            template: '<test [value1]="`test`" [value2]="`test`" [aValue3]="`test`" [aValue4]="`test`"></test>',
+            template:
+                '<test [value1]="`test`" [value2]="`test`" [aValue3]="`test`" [aValue4]="`test`"></test>',
             imports: [mock.TestComponent],
             standalone: true,
         })
@@ -210,5 +243,35 @@ describe('stubComponent', () => {
         }).not.toThrow();
 
         expect(console.error).not.toHaveBeenCalled();
+    });
+
+    it('stub simple component as view child', () => {
+        const actual = jest.requireActual<
+            typeof import('./__fixtures__/test.component')
+        >('./__fixtures__/test.component');
+        const mock = jest.createMockFromModule<
+            typeof import('./__fixtures__/test.component')
+        >('./__fixtures__/test.component');
+
+        const cache = new StubCache();
+
+        stubComponent(cache, actual.TestComponent, mock.TestComponent);
+
+        @Component({
+            template: '<test></test>',
+            imports: [mock.TestComponent],
+            standalone: true,
+        })
+        class RootComponent {
+            public readonly testComponent = viewChild(mock.TestComponent);
+        }
+
+        const root = TestBed.createComponent(RootComponent);
+
+        root.detectChanges();
+
+        expect(root.componentInstance.testComponent()).toBeInstanceOf(
+            mock.TestComponent
+        );
     });
 });
