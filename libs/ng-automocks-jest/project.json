@@ -1,35 +1,36 @@
 {
-  "name": "ng-automocks-jest",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/ng-automocks-jest/src",
-  "projectType": "library",
-  "release": {
-    "version": {
-      "manifestRootsToUpdate": ["dist/{projectRoot}", "{projectRoot}"],
-      "currentVersionResolver": "git-tag",
-      "fallbackCurrentVersionResolver": "disk"
-    }
-  },
-  "tags": [],
-  "targets": {
-    "build": {
-      "executor": "@nx/esbuild:esbuild",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/libs/ng-automocks-jest",
-        "main": "libs/ng-automocks-jest/src/index.ts",
-        "tsConfig": "libs/ng-automocks-jest/tsconfig.lib.json",
-        "assets": ["README.md", "LICENSE", "images/logo.svg"],
-        "format": ["cjs", "esm"]
-      }
+    "name": "ng-automocks-jest",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "libs/ng-automocks-jest/src",
+    "projectType": "library",
+    "release": {
+        "version": {
+            "manifestRootsToUpdate": ["dist/{projectRoot}", "{projectRoot}"],
+            "currentVersionResolver": "git-tag",
+            "fallbackCurrentVersionResolver": "disk"
+        }
     },
-    "nx-release-publish": {
-      "options": {
-        "packageRoot": "dist/{projectRoot}"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
+    "tags": [],
+    "targets": {
+        "build": {
+            "executor": "@nx/esbuild:esbuild",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/libs/ng-automocks-jest",
+                "main": "libs/ng-automocks-jest/src/index.ts",
+                "tsConfig": "libs/ng-automocks-jest/tsconfig.lib.json",
+                "assets": ["README.md", "LICENSE", "images/logo.svg"],
+                "format": ["cjs", "esm"],
+                "external": ["@jest/globals"]
+            }
+        },
+        "nx-release-publish": {
+            "options": {
+                "packageRoot": "dist/{projectRoot}"
+            }
+        },
+        "lint": {
+            "executor": "@nx/eslint:lint"
+        }
     }
-  }
 }
